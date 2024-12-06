@@ -1,0 +1,2643 @@
+Hey there everyone, my name is Hitesh and
+
+welcome to another video on the backend development.
+
+So so far we have done pretty good progress.
+
+We understand a whole lot of ins
+
+and outs of backend development and we're
+
+going to continue that in this video.
+
+But before doing anything else, there's
+
+a common target for this video.
+
+Not expecting much.
+
+Can we just complete hundred comments?
+
+I'm trying to provide as much as
+
+value to this channel as I can.
+
+I just need a tiny bit motivation from your site.
+
+So go ahead and hit that.
+
+Also, there's a link in the
+
+description section about the discord community.
+
+In case you face any problem, there's a there
+
+is a lot of folks in our discord community.
+
+They do timely resume review,
+
+mock interviews and whatnot.
+
+Happens all in the community.
+
+So feel free to join it.
+
+It's absolutely free now coming back.
+
+So let's take a step further and figure out
+
+what we're going to do in this video.
+
+So one of the key thing that I really want to
+
+do now is now that I have understood that writing the
+
+servers in the in the core environment is not sustainable.
+
+It's not a great developer experience and I cannot do
+
+that things very much speedy and onto a scale.
+
+So yes, people have figured that out already
+
+and now we have libraries and frameworks, which
+
+makes our life little bit easier.
+
+So in this video we'll be
+
+taking help of one such library.
+
+I'll walk you through with what are different
+
+options are available, how these libraries fit into
+
+the picture of where the entire diagram is
+
+going on, of how the development request response,
+
+all these things are working.
+
+Not only that, we'll be
+
+building a simple crud application.
+
+We'll try to push it onto production as well.
+
+We'll see what goes wrong, what goes right with it?
+
+Does it work?
+
+Does it doesn't work, what happens with all of this?
+
+So that's the whole part of it.
+
+I am pretty sure you're going to enjoy this.
+
+Go ahead, follow me.
+
+Along with this one, we'll be writing some code.
+
+We'll be pushing them on to
+
+get as well as on Digitalocean.
+
+You can have another service provider as well.
+
+But these are the ones that I'll be using.
+
+So first of all, let's go ahead and let me
+
+share the screen of how things are going on.
+
+So we've gone through with this first
+
+diagram, which was pretty nice and cute.
+
+Now we're going on to the bigger one.
+
+So we have figured out that
+
+we don't need anything else.
+
+We can just work with the node environment
+
+or bun environment wherever we want to go.
+
+But we have decided that we'll go with the
+
+node environment because that's the most popular one.
+
+But I none to be worried.
+
+I will provide you by the end of this course.
+
+Really great video on using other environments like
+
+Hono and probably I'll record more whatnot.
+
+So here we can see that we have
+
+this node environment, and along with the node
+
+environment we'll be having an express js.
+
+Now what is this express js?
+
+Express is a simple library which makes your life a little
+
+bit easier to go ahead and write routes for it.
+
+Routes by the mean, I simply want to say slash
+
+Instagram, slash Twitter, wherever you want to take the user
+
+on your website and what the response we need to
+
+send, that's where Express helps us a little bit.
+
+All that we write for the authentication
+
+logic, authorization logic, all the business logic.
+
+What happens with the data?
+
+Is the data valid?
+
+Should I give a response back?
+
+Should I not give a response back?
+
+Should I give a all okay response?
+
+Should I give everything is bad response.
+
+All that happens in core JavaScript via the Express.
+
+And the obvious question is why express?
+
+Why not other things?
+
+There are so many cool things available in the market,
+
+so express is something, you can find it@expressjs.com dot recently
+
+they got a revamp of the of the dark mode.
+
+I'm super happy with it.
+
+There's a light mode as well.
+
+Nobody liked it, but hey, I'll go with the dark one.
+
+So it's a fast, unopened, minimalistic
+
+web framework for Nodejs.
+
+Being unopened means it's super easy and
+
+fast to learn, and it scales nicely.
+
+We have tried and tested it in the
+
+production and it's one of the industry standards
+
+still to this date that's going on.
+
+So we want to learn
+
+something which is industry standard.
+
+But once you learn about how the
+
+express works, about its middleware, the API,
+
+the web application and all these things,
+
+then this knowledge is completely transferable.
+
+You can transfer this knowledge onto other
+
+such similar web frameworks or library, whatever
+
+you want to call them.
+
+There is one which I'll definitely introduce you towards
+
+the end of this course known as Hono.
+
+If you're on the channel you already know I
+
+have a video already on the hono that's exactly
+
+the same video, but in case you're watching it
+
+in one go or some other platform, then obviously
+
+this will come at towards the very end.
+
+Hono is another such web framework which
+
+helps you to write similar routing infrastructure,
+
+and this one is pretty nice.
+
+It has a lot of batteries included.
+
+It run with different kind of environment.
+
+The same code can not exactly same, but yeah, majority
+
+of that code can run in node, in bun and
+
+different environments, even on the cloud player environment.
+
+That's why it's super amazing.
+
+Similarly, there's a new one which is Alicia
+
+J's getting very popular and it's really powerful.
+
+I recently tried it, enjoyed the developer experience.
+
+But these are not meant for you to learn
+
+on the day one with just getting started.
+
+These are meant to learn after some experience.
+
+Once you have the experience with Express, then
+
+Hono and Alicia will be all just super
+
+easy for you to learn and get comfortable.
+
+So our choice is going to be express.
+
+We'll get our hands dirty, we'll go absolutely in depth
+
+with Express, and then as we move progress towards the
+
+end of this course, we'll explore Hono and we'll express
+
+Alicia and whatnot and all the other things.
+
+Okay, now another key component to build an
+
+entire backend application is some kind of database.
+
+And we need to just figure out,
+
+hey, we want to choose one.
+
+Once you understand and master one database, moving on
+
+to another database is relatively simple, but you need
+
+to spend good amount of time with at least
+
+one of the database that can be a SQL
+
+one, that can be a noSQL one.
+
+It's not really that much of a rocket
+
+science after you understand one of the database.
+
+So surely we could have chosen
+
+MySQL, postgres or anything else.
+
+But in this entire application we
+
+are choosing MongoDB for that one.
+
+Now, in the world of JavaScript,
+
+we don't touch MongoDB directly.
+
+In majority of the case, although you
+
+can, we still require a library.
+
+In this case, we are using Mongoose as a library
+
+to interact with MongoDB so that we don't have to
+
+write the code, core code of the MongoDB, writing those
+
+database queries, sending the data, getting the data back.
+
+There's a lot of heavy lifting that needs to be done.
+
+There is also multiple connections
+
+there to the database.
+
+We want to handle the connection pooling.
+
+There's so much of infrastructure that we have to work
+
+on Mongoose help us to actually interact with that.
+
+Just like Express is not the only one,
+
+Mongoose is also not the only one.
+
+There are other orms.
+
+Orms is simply a short form.
+
+You can, as of now, understand it's an object
+
+relational mapper, a big word, just simply understand.
+
+To keep my data structure into a sum structure and then
+
+to talk to the database, I need some guy in between
+
+that's my middleman and that is what your mongoose is.
+
+And similar to Mongoose, we have other options as well.
+
+You might have heard about Prisma.
+
+Oh boy, this is such a nice to define your structure.
+
+I don't think anybody still to this date has come
+
+which is anywhere near about how you define your schema.
+
+Running the queries, that's a different one.
+
+You'll find a lot of people critiquing Prisma about.
+
+Hey, it doesn't really perform really
+
+well on the queries part.
+
+That's a different talk altogether.
+
+But oh boy, that's the way how it interact
+
+with the SQL databases and especially the query structuring.
+
+That is amazing.
+
+Then we have another popular guy drizzle and by the time
+
+you'll be watching this video, I'm pretty sure there will be
+
+one or two other which might be popping up.
+
+So they pop up all the time.
+
+There is nothing like we are.
+
+We're not going to be spending a good amount of
+
+time in discussing this this which one is best?
+
+It's all depends on what's your
+
+use case, what database you're using.
+
+Like Mongoose and MongoDB, they
+
+are match made in heaven.
+
+Similarly, if you want to use
+
+postgres, go for drizzle or Prisma.
+
+They actually suits equally well.
+
+Depends on what your use cases.
+
+We'll not talk about them as of now.
+
+As of now, this is our stack that we want to master it.
+
+Once we master it, then we obviously
+
+can go on to different arenas, fight
+
+different games with Prisma, Drizzle and whatnot.
+
+Your focus at the time of learning through this
+
+course is hey, I want to master this.
+
+At least I'll have a rock solid knowledge of it.
+
+Then I'll try to expand the
+
+horizon of how things actually go.
+
+So final note, we'll be handling all the web requests.
+
+The web request will come to my express
+
+application that runs in the node environment.
+
+In that I'll be writing all of
+
+my auth logic and business logic.
+
+And in case whenever there is a need of
+
+it, we won't be needing it in this video.
+
+But very soon in the upcoming videos, we'll need it
+
+in case my express application needs to talk to database
+
+to get some data or save some data.
+
+We'll use a layer of mongoose in between,
+
+and that Mongoose will further talk to MongoDB.
+
+Now it looks like that the Mongoose and MongoDB are
+
+really, really like there's too much going on, but what
+
+you'll realize it's it actually is not that far.
+
+It's actually very, very close to MongoDB.
+
+Doesn't take that much of latency,
+
+doesn't add that much of overhead.
+
+But yeah, little bit of overhead is there,
+
+but don't you worry on that part.
+
+So I'll just keep it very close that it's there.
+
+But you get the idea.
+
+Now MongoDB also provides you direct drivers as
+
+well, but it's a little bit complicated, little
+
+bit extra code to work with that.
+
+So we'll leave that heavy lifting for the
+
+sake of developer experience and follow the best
+
+practices that we'll be using Mongoose for that.
+
+All right, so that's settled up.
+
+Let's go ahead and work with that.
+
+So we'll keep our postman open up.
+
+We'll be needing that in probably
+
+this or the next video.
+
+And by the way, I also will be pushing
+
+it up all on my GitHub as well.
+
+And through that we'll be using digitalocean.
+
+This one of my account has some of the
+
+credits, so we can try and test out our
+
+application by putting it in the production.
+
+And there are a lot of ways you can
+
+do the things in the hard way by using
+
+the droplet or spinning up a virtual server itself.
+
+You manage everything on your own from the
+
+port protection to the firewalls and whatnot.
+
+Or you can just use the app platform, which
+
+is a lot more things automated in that way.
+
+We'll definitely come back onto this one right
+
+now we want to go through with Express.
+
+Now working with Express is super easy.
+
+You can just click on get started and
+
+there's, there's a whole lot of steps being
+
+involved and is being given to you.
+
+We'll be using some of them.
+
+It's actually super easy.
+
+What we're going to do right now is let's open
+
+up and we'll be creating a new folder for it.
+
+I will be using this folder, but I'll
+
+be deleting the repository that I'll be creating
+
+in this video because I'll give you this
+
+entire source code in a separate repository.
+
+This one is just for the sake of
+
+we can put the things in production.
+
+So let's just call this one as zero two
+
+and we're going to call this one as Express.
+
+Now working with Express is actually super easy.
+
+Follow me along from here and I'll right
+
+click and open it into the integrator terminal.
+
+That's important because I want to be in the root
+
+folder, not by hey, I'm into this folder, so make
+
+sure whenever you check the PWD present working directory.
+
+You are in this express folder.
+
+Now once you are in this folder, all you
+
+have to do now is create an node project.
+
+We haven't done this so far.
+
+We have been writing our code directly into the
+
+JavaScript files, which is not really the best way.
+
+So what we're going to do is
+
+we're going to say npm init.
+
+We can provide an option of dash y to directly
+
+accept all the defaults, but since this is the first
+
+time you're going through it, I'll show a yes.
+
+And from the next point onwards we'll just use an option of
+
+dash y to just simply go ahead and run through it.
+
+When I say init, it gives me a
+
+utility that what should be the package name?
+
+You can use the default package name as
+
+express, or you can just go ahead and
+
+give your name as well to this project.
+
+So I'm going to call this one
+
+as let's call this one as tea-manager.
+
+I'm a big fan of tea, especially iced tea, so I'll just call this one as tea-manager.
+
+What's the version of it?
+
+One dot zero.
+
+Dot zero is fine for me.
+
+Description a simple manager for let's just call
+
+this one as oops, different tea.
+
+Tea is fine.
+
+Entry point is index js.
+
+You can call it server js index js, whatever you like.
+
+I'm happy with index js. Test command.
+
+We don't have any testing command as of now.
+
+We will create the git repository later on.
+
+Right now I'm not interested in that keywords.
+
+I'll call this one as Express.
+
+It's not really required.
+
+Express and t are my
+
+keywords author definitely, that's me.
+
+And license ISC is good enough.
+
+Not a video about the licensing yet.
+
+Yes, this is all okay.
+
+Now once this all is done, what you'll notice
+
+is in this you'll find a package JSON file.
+
+This is a file which is the first entry
+
+point whenever your application gets started by the node.
+
+This is where it checks all the setting that
+
+what I need to install and all these things.
+
+This is checked by the production applications as well.
+
+The first thing that we're going to do is it says
+
+that the main entry point of application is index J's.
+
+I don't have that.
+
+So I'll just right click and create this file
+
+and I'll call this one as index js.
+
+Whatever you called it there, you just
+
+go ahead and call it here.
+
+Same, exactly same.
+
+Now I want to run this application so there are
+
+a couple of ways how we can run it.
+
+The most basic way is node, and node should
+
+be oops, it should be start, not the node.
+
+Whenever I run the command of start, this should run
+
+via the node, a file known as index js.
+
+Now this is absolutely fine.
+
+The way how we use this command.
+
+Now the script start is really simple.
+
+I just go ahead and say Npm run and the name of
+
+your script, in my case, the name of my script is start.
+
+If you're a superman, you can go ahead and do
+
+that, but that's the standard of having the start here.
+
+Cool, that's nice.
+
+And we'll see that some of the issues are there.
+
+Now, in the world of JavaScript, there are
+
+a couple of ways how you write your
+
+code in a modular fashion and whatnot.
+
+One is the syntax of require,
+
+one is the syntax of import.
+
+So feel free to choose based on that.
+
+You have to put a settings in here.
+
+So I can just go ahead and say that
+
+hey, I want to use a setting of type
+
+and then you can use common js and module.
+
+Most of the time people prefer to use module.
+
+I also prefer to use module.
+
+So I'll just add that setting here so that
+
+instead of writing const, express, require express, I can
+
+just import the express from Express, of course.
+
+So again, depends on what suits you best.
+
+You just go ahead and use that.
+
+I'll save this one.
+
+So this is my settings now next
+
+up is I need to install express. So this is all what we
+
+have done, entry point and whatnot.
+
+The next big command for us is NPM install express.
+
+So this is exactly what we want.
+
+So copy this and we'll just paste this.
+
+Once you run this command, this is
+
+going to install express as a package.
+
+So if I just go ahead and see dependencies. There we go.
+
+I have express version 419.2.
+
+So that's the version that I'm using, so pretty good.
+
+And it has also created node module, so all
+
+the code files that are required are being transferred.
+
+Moving on, what's the next thing that I can do?
+
+The next thing is hey, you
+
+should be writing a hello world.
+
+So let's go ahead and see that
+
+this is how you write it.
+
+But hey, notice here we are not using the express.
+
+Why did you change the dark mode?
+
+That's, that's really bad.
+
+It should be dark mode.
+
+Anyways, so now it's saying that hey, you
+
+can use this exact same command, const Express,
+
+require express, then create an app and then
+
+you can handle the routing and whatnot.
+
+So we surely can do that.
+
+But I'll show you a simple step.
+
+I'll be using this one as express.
+
+Let's go back up here.
+
+I'll go into index file and as soon as
+
+I do this, this is not going to work.
+
+It even shows that file is a common G's module.
+
+It may be converted to Es module.
+
+So hey, this syntax is not going to work.
+
+So we need to find a better way of doing this. And easy.
+
+Another syntax is const and we can go ahead
+
+and say we want express and oops, not const,
+
+import express from and then we can use express.
+
+That's the difference.
+
+That's the only difference when we
+
+go ahead from the common thing.
+
+Now once you have this express, the
+
+rest of the stuff is pretty standard.
+
+So what do we do that?
+
+After that we go ahead and create an app.
+
+And that app actually comes from Express.
+
+Now this app is a powerful object.
+
+It has so many things that it can do.
+
+The most common one that you're going to
+
+see is to listen on any port.
+
+So for this, let's go ahead and define a port.
+
+And that port for us can be 3000, 8000.
+
+Different people are different fan
+
+of different port numbers.
+
+We can just pick anyone and then we can
+
+just go ahead and say app dot listen.
+
+And this listen takes two parameter.
+
+The first one is the port.
+
+And by the way, I'm not making this
+
+stuff, this is actually written up here.
+
+It can listen on the port with a callback.
+
+So that's exactly what I'm writing line by line.
+
+And there we go.
+
+If it successfully listens to it, we can go ahead
+
+and do a simple console log, that simple server is.
+
+Or we can use backtext.
+
+That would be fun.
+
+We can just go ahead and say server is running at port.
+
+And then we can say colon, let's inject this.
+
+There we go.
+
+And port. There we go.
+
+And of course we'll do three dots.
+
+It looks cool. There we go.
+
+Now how can we run this? Pretty simple.
+
+I can just go ahead and make a change up here.
+
+I can say NPm run and run my start script.
+
+The moment I do this, it gives me a
+
+message that server is running at port 3000.
+
+So that's nice that my server
+
+is running on the Portland.
+
+Now this is the basic, you'll
+
+always write this boilerplate code.
+
+Now what additionally you might want to
+
+write is some of the endpoints.
+
+If you remember from earlier, when we designed this
+
+Express server, we had to respond to so many
+
+of these routes, slash hellos and whatnot.
+
+We even didn't thought about what
+
+kind of requests were coming in.
+
+Express actually thinks very very carefully about it.
+
+If you'll notice here, there
+
+are different kind of requests.
+
+Get for regular getting the data post to send
+
+some data that needs to be saved in the
+
+database, there is a put request, patch request, delete
+
+request to delete some resources and whatnot.
+
+Express actually makes our life easier by doing so using
+
+the Express, the app that I've created, I can just
+
+go ahead and say app and then I can put
+
+a dot and notice here there are so many methods
+
+available here, enabled engines and whatnot.
+
+Listen, local merge.
+
+Oh man, there are so many of them.
+
+We'll be using just a simple method.
+
+That app wants to respond to a get request.
+
+Now what this get request does
+
+and what port it is there.
+
+So I'll just say that I want to request a handle
+
+request which is on the slash port, the home route.
+
+And whenever there is a request comes in, I'll just
+
+go ahead and use a request and response as an
+
+object which is available in every get method.
+
+If you're using app and then we can just
+
+go ahead and use a callback like this.
+
+Now using the request, I can extract all the data
+
+that's coming up from the request of the user.
+
+By using the rest, I can respond to any of the user.
+
+You can check the docs for more of these, respond can
+
+directly send the data like this, or it can send the
+
+data in the JSON format API is and whatnot.
+
+I'll just use a simple send and I'll
+
+go ahead and say something like this, hello
+
+from Hitesh and Tea and his tea.
+
+So of course with explanation.
+
+The problem with this is that my server
+
+was already running the updates that I've made.
+
+My server is not aware of these updates.
+
+So there are a couple of options.
+
+I can just go ahead and stop this and I can start
+
+it again that hey, this is how I want to run it.
+
+Yes, there are other ways, better ways of handling the
+
+things, but right now this is how we do it.
+
+So we are running on 3000.
+
+Let's go ahead and test it out.
+
+We want to send a new request and
+
+this is how you professionally do it.
+
+I saw and I know a lot of people who loves
+
+to open the browser and show you everything in the browser.
+
+No, no, no, we are not doing it.
+
+We are doing everything via professional way.
+
+So fire up your postman and we
+
+want to go with the request.
+
+And what we're going to say is
+
+one, two, seven dot 0.0 dot one.
+
+And after that we want to just hit
+
+a colon 3000 and then a slash.
+
+This is my request.
+
+Make sure this says as a get because that's
+
+the request we want to send, not the post,
+
+not the put, not the patch get request.
+
+And as soon as I send this request, it gives me
+
+a response back which says hello from Hitesh and his tea.
+
+Pretty nice, pretty nice.
+
+Comparatively, this code is much
+
+more cleaner, much more expandable.
+
+I can move this code into different files and whatnot.
+
+So I think now you have understood that
+
+hey, using express is not that bad.
+
+It makes my life a tiny bit easier.
+
+Now all I have to do is I can do a
+
+speed development and I can show you off a little bit.
+
+So I can just go ahead and do a copy of this.
+
+So I can just go ahead and say, let me just
+
+select all of this, have a copy of this, and I
+
+can say I want to handle another route which is going
+
+to be, let's just say ice dash t.
+
+And in this case I will
+
+just say something like this, oops.
+
+What Ice tea would you prefer if I can write that?
+
+Would you prefer not an exclamation, that's a question.
+
+So I can just save this.
+
+The only problem is, man, this
+
+is something that I don't like.
+
+This is a development, so I should fix this.
+
+How can I fix this?
+
+I don't want to keep on starting and running it.
+
+There are packages for it which makes
+
+your life a little bit easier.
+
+Let's fix this first so that any change
+
+that I make my server should restart.
+
+So let's stop this.
+
+And there is a solution for
+
+this which is known as nodemon.
+
+And yes, you can do that directly by the node itself.
+
+You can do a watch mode, but
+
+I'll tell you the standard way.
+
+First of all go in the package JSON and we'll install,
+
+but this time we'll install it in with a different way.
+
+Previously we said NPM install express.
+
+That is the way how you install regular dependency.
+
+But there are some things which doesn't need to
+
+be sent to your server, to your production.
+
+We call them as development.
+
+Dependency means they're useful for development.
+
+They might be little heavy, but hey, it's
+
+okay, we are using it just for development.
+
+We never send it out in the production.
+
+The way how we do it is we can
+
+either say save Dev and all of that.
+
+I hate that I just use a dash d
+
+which is a short form of development dependency.
+
+And I'll just go ahead and say I want to install
+
+a node mon and now I install this node mon.
+
+You can see there is a difference.
+
+Dependencies gets installed on server dev.
+
+Dependencies are 100% ignored there.
+
+Now I need to run a separate command so
+
+that I know that this is a common command
+
+that will be running in my production environment.
+
+But I can, there's no shortage.
+
+I can create more command and I can run a
+
+simple dev command which fires up nodemon and index js.
+
+So you guessed it, it's pretty easy now that
+
+we can go ahead and work and say npm
+
+run dev and nodemon is now running.
+
+And the best part is I can
+
+close this, go into index js.
+
+Let's create one more route up here so I can just go
+
+ahead and say I want to create a route that goes onto
+
+my twitter and it responds back with my twitter id.
+
+Hitesh.com dot save this notice.
+
+Automatically it restarted. I don't have to do anything.
+
+I can keep it running.
+
+I can even close this terminal.
+
+It will keep on working in the background,
+
+so makes my life so much easier.
+
+You can see now we are moving on
+
+to production grade development which is much faster.
+
+You have a job, it's not like
+
+you are just having fun and restart.
+
+You need to write some code
+
+that needs to go in production.
+
+So speed is important,
+
+developer experience is important.
+
+So we're going to go ahead and say ice dash t.
+
+We hit that route.
+
+It says what would you like to prefer as an ice t?
+
+Or we can just go ahead and
+
+ask it for twitter slash twitter. And there we go.
+
+So hitesh.com so we have seen one thing
+
+that it's really nice to work with this
+
+and express is not really that bad.
+
+Now can we do some kind
+
+of a serious development as well?
+
+Yeah, so far we have done this
+
+basic and nobody likes this basics.
+
+We need to do something which is really cool and
+
+we can learn something and brush up your JavaScript skills.
+
+So I'll just remove everything from here.
+
+And now let me show you one more configuration.
+
+We will be using a lot of middleware
+
+and we'll talk about this right now.
+
+One of the major problem is so far
+
+we have just sent the data as back.
+
+We have returned the data, nothing else.
+
+Now we want to accept some data
+
+from the front end side as well.
+
+There are many ways of how we can do that.
+
+The most common one is to have a
+
+settings that we call in the app.
+
+There are so many ways how you can
+
+use the settings from the front end side.
+
+We'll just go with the basic one which is app use
+
+and we'll be using express dot and we'll be saying JSON.
+
+So any data that comes up in the JSON
+
+format, we accept that there are settings for taking
+
+data in the form in URL encoded forms.
+
+There's so much more that we can do right now.
+
+We'll just go with the basics
+
+and we'll see what happens. Figure out.
+
+Now we want to design a simple application
+
+which stores my data in an array.
+
+So let's just call this one as t data. I love t.
+
+So I'll store everything in an array t data.
+
+And since if I'm going to push the data in the
+
+t, I need a way to uniquely identify the data.
+
+So I'm going to go ahead and call this one
+
+as next id and I'll just start with one. All right.
+
+Now I need to create a different route so that
+
+I can add a t into this t data.
+
+I can see how many t's are there in my array.
+
+I should be able to update it.
+
+I should be able to delete it.
+
+Now how do we do that? Follow me along.
+
+And this is, we are building the
+
+entire crud application right now, right here.
+
+That is the fun part.
+
+We'll do the testing as well.
+
+So for whenever you take any data, the, the chances
+
+are high that you actually use a post route.
+
+Not always compulsory, but majority of the time when you want
+
+to save the data in database or something, post is better
+
+way you can take the data and get as well.
+
+No problem there.
+
+But it's the most standard way.
+
+The route that we want to handle in this case is
+
+going to be slash and we'll be calling it as t's.
+
+You can call it as one t as well.
+
+And we'll say that hey, I'll be getting the data.
+
+You know that I have a callback just like this.
+
+And in the callback I do have a
+
+request and a response accessible to me.
+
+This request and response is magic.
+
+Through the request I'm saying
+
+that I'll receive a body.
+
+Now this is a parameter that
+
+is given to you by Express.
+
+And yes, I'll show you the documentation as well.
+
+There's so much more that you can learn about it.
+
+In case you want to see that.
+
+We can just go into express and we can go with
+
+the API reference four or five, we'll go with the four.
+
+And in this on the left hand
+
+side you can see request and response.
+
+Yes, that's exactly same rec and rest.
+
+So this request, you can see there
+
+is so much more in here.
+
+We have used just a minority of that.
+
+So you can see that we used app dot get.
+
+Similarly we have app post and there's an
+
+app use as well that we just used.
+
+So it's just behind me. So there we go. App use.
+
+We have used this one.
+
+You can check out what more you can do
+
+in it if you want to have path description.
+
+We'll study some of these docs.
+
+But anyways let's go back.
+
+So from the request you can extract the data.
+
+So I want to extract just the two things.
+
+So I'll just go ahead and say give
+
+me name and also give me price.
+
+And there we go.
+
+Now I'm destructuring on the go.
+
+The way how actually the data comes up is there will
+
+be request body and all the parameters that you pass up.
+
+For example request body, dot price.
+
+This is how usually the data comes up.
+
+It's a big object, body is an object and you should
+
+really try to console log, I'll show you that as well.
+
+Request body, but I'm destructuring it on the
+
+go so it's much more easier for me.
+
+Classic JavaScript 101.
+
+I hope there is no issue in that once I have this.
+
+Now I need to create an object so that
+
+I can store this object in my database.
+
+So how do we create an object?
+
+Let's just go ahead and call this one as new.
+
+Tea should be fairly easy.
+
+The properties that you want to inject
+
+in it, I will have an id.
+
+Id will be, let's just call this one
+
+as next id and we'll increment the id.
+
+First we'll use it, then we'll keep on incrementing it.
+
+And then we also store name and price
+
+that we borrowed from the request body.
+
+I have this object.
+
+All I do is now save this object instead of database.
+
+Right now we have a t data.
+
+You know how to handle the arrays, we can push it
+
+and we can just say new data, new t actually.
+
+And after that we want to send a status
+
+that hey, everything was good, so we'll just say
+
+res and res can have a status.
+
+Status could be 201, everything was good.
+
+Then further you can chain on multiple methods, I'll
+
+just send a response, and in the response I'll
+
+also throw in the new data so that user
+
+can know what data I just saved.
+
+I can save this.
+
+I know that my server gets
+
+restart, save this, it restarts now.
+
+Nice and easy.
+
+Now I can try and test that whether my data went in.
+
+It's not going to be a foolproof test, but hey,
+
+slash teas, let's just see how we can do that.
+
+I'll just go ahead and say teas.
+
+And this time it's not a
+
+get request, it's a post request.
+
+But how do I send the data?
+
+Should I write in here?
+
+No, you don't do that.
+
+You go into the body and then you select the raw. Yep.
+
+You don't select the form data.
+
+You don't select the x form URL encoded.
+
+You just select the raw.
+
+Through the raw you drop down
+
+and select the JSON in it.
+
+Now you need to provide a valid JSON data.
+
+This is how a valid JSON looks like.
+
+And in that we'll be providing that.
+
+Hey, what is the name of the data? So name.
+
+Let's just say this is Ginger tea.
+
+And what should be the price of it?
+
+I'll go ahead and say price.
+
+And the price will be it's expensive tea 100.
+
+And we haven't actually restricted that.
+
+You can only send me the numbers or anything.
+
+So I'll just go ahead and say something like this.
+
+Hundred rupees.
+
+Now when I go ahead and send it as a post request.
+
+Now notice here, I get back that the id is here.
+
+Ginger tea and all of that.
+
+I can repeat this request.
+
+Instead of ginger tea, I'll use a masala tea.
+
+It's, it's a little more expensive.
+
+What can I say?
+
+It's economy.
+
+I'll just send it.
+
+And this time the id increases and everything.
+
+But the problem is it's an array.
+
+It's an in memory database.
+
+So if I accidentally even hit a save, that's it.
+
+My server restarts and everything is gone.
+
+Now if I go ahead and send
+
+this data again, it starts with one.
+
+Everything got reset.
+
+Good enough, good enough.
+
+But can we go ahead and list all the tea's?
+
+Yeah, that should be fine.
+
+And that should be super easy for you.
+
+App get.
+
+And there we go.
+
+What do you want to call it?
+
+These same stuff, very repeatable request response.
+
+A simple callback.
+
+What do you want to send back?
+
+I want to send a status back.
+
+The status can be of simply 200.
+
+And what do you want to send back?
+
+I want to send the whole array.
+
+So I can just go ahead and call this one as tdata.
+
+That's it.
+
+And we can work with that. Super simple.
+
+I can make a get request to tease.
+
+Let's just send this request now.
+
+We have a proper masala t and
+
+let's go ahead and copy this.
+
+We'll do a proper checking after this. And paste.
+
+This is this time it's the same route.
+
+Notice here it's teas.
+
+It's also teas, but this is post request.
+
+This is get request.
+
+We'll go ahead and say this is a get request.
+
+Send that, and there we go.
+
+You receive an array.
+
+With this, you can go back here and instead of
+
+masala, we can go back to Ginger, which is one
+
+of my favorite one, apart from ice tea, send it back,
+
+go to this route, do the testing.
+
+Now you have two objects. There we go.
+
+Professionally being done.
+
+All right, couple of more things.
+
+How can I get a single t?
+
+That is also easy.
+
+Since we are storing the ids.
+
+You need to provide me the id.
+
+All right, so how can we do that? Super easy.
+
+Again, you can use app dot, get the same stuff
+
+and you can hit the same route in it.
+
+In fact, you can just go ahead and see teas.
+
+But you need to give me some data so
+
+that I know what t you are looking for.
+
+The easiest way, best way is to hit a slash.
+
+Then there is a special syntax known as colon.
+
+And then you can provide me id.
+
+Id means one, two, three.
+
+Id could be strings as well, but whatever you
+
+write after slash t's, that will be my id.
+
+So slash t's of here.
+
+If you write Hitesh, that's my id.
+
+If you write here, one, that's my id.
+
+If you write it here, two, that's my id.
+
+I go up here and say, hey, you will
+
+provide me an id to search for it.
+
+So request response, and there we go.
+
+Super easy, nothing, big deal.
+
+Now how do I find, it's exactly same
+
+as how you find anything in the array.
+
+There is nothing back end in it.
+
+There is nothing expressed in it.
+
+So how do we get that so this tea data, I
+
+can use so many ways to find anything inside an array.
+
+Let's use a simple find method.
+
+In the find method, it goes back to every single,
+
+it goes back to every single object of the array,
+
+or entity of the array would be better word.
+
+And I'll say, hey, t.
+
+And how do you get back that t?
+
+So for that I'll compare that t will
+
+have an id as an object inside this
+
+if that matches to request dot params.
+
+And again, this is a new word.
+
+Hey, where did this param comes from?
+
+If you want to extract, if you noticed here, so
+
+far we have been accepting everything inside the body.
+
+That's the request body.
+
+But if you are sending me anything inside the URL,
+
+you extract that via the params keyword, super simple.
+
+If anything comes in the body, you say request body.
+
+If anything comes in the URL, you call it as params.
+
+After that you're going, whatever you're going to
+
+call that needs to match with this one.
+
+If you call it id here, you need
+
+to call this one as id here.
+
+If you call it superman here, you
+
+need to call it superman here.
+
+Simple, no big deal.
+
+But the problem is anything that comes up
+
+from the URL is in the string format.
+
+So what you need to do is you need to
+
+actually put this up here and have to say parse,
+
+parse int so that we are 100% sure that we
+
+are comparing, we are using triple equal.
+
+So we are making sure that we
+
+are comparing numbers with the numbers.
+
+Anything that comes from the
+
+params is actually a string.
+
+So once we have this, let's go ahead
+
+and store that into a t variable.
+
+There we go, nice and easy.
+
+And if you don't like, we need to
+
+check in conditionally and we simply go ahead.
+
+If we don't have any t, then we
+
+want to say I couldn't find it.
+
+So return res dot status, the favorite
+
+status of everybody that everybody knows.
+
+I'm pretty sure you have seen 404.
+
+And then I can send a simple data
+
+that, hey, t not found simple 101.
+
+If you have the t, then simply
+
+go ahead and send it status.
+
+First we'll do the status and
+
+we'll say 200, I found it.
+
+And then we can go ahead and say send and
+
+I can just go ahead and send this t. Pretty simple.
+
+Nothing to break the sweat here.
+
+Okay, this is the one thing.
+
+Now obviously there are ways of how you would
+
+love to get this data and delete this.
+
+So let me just write this as
+
+a comment so that you know this.
+
+This is add a new tea and this
+
+one is a route to get all t.
+
+And that's how you design things
+
+in the real world as well.
+
+Get all t and get a t with id.
+
+And now we need to write some, in fact two
+
+more routes that can do and finish our crud operation.
+
+So bear with me.
+
+I know it's a little bit of a longer one,
+
+but hey, we are learning so much into this one.
+
+I know we are almost like 36 minutes.
+
+Still not a big deal.
+
+It's a decent lecture, so just follow me up.
+
+Okay, let's go ahead and write for the update.
+
+Oops, where am I writing?
+
+And we'll say update t.
+
+And for updation of the t we use app put.
+
+Yep, that's the new one again and again we
+
+have all these methods available in the postman.
+
+That's why I say browser doesn't cut through
+
+when you go through with the backend development. Same.
+
+We can go with the teas just like that.
+
+But this time in the teas you
+
+have to actually give me an id.
+
+So colon id now you know, rest of the part.
+
+It's very repeatable knowledge.
+
+We can have a simple request response go like that.
+
+The step one is to grab this id.
+
+How can we grab that?
+
+It's actually super easy.
+
+If you want to grab it, just go ahead and
+
+call this one as request dot params dot id.
+
+You can grab it and we can call this one as
+
+const id or we can call this one as tid.
+
+And this is the one that I'm looking up for.
+
+So how can I find this particular id?
+
+In order to update anything, I need to find it first.
+
+So let's just go ahead and call this one again.
+
+We can actually use the same data.
+
+If we are able to find it, we can
+
+actually go ahead and update it just like that.
+
+So I'll just go ahead and copy this.
+
+Yeah, that's good enough.
+
+There we go.
+
+Now what we want to do is
+
+instead of we don't even need this.
+
+Now we are directly grabbing this.
+
+So yeah, that's fine.
+
+Now we have an access of t.
+
+If we don't get a t immediately, we want
+
+to respond that, hey, I couldn't find the t.
+
+T not found.
+
+So there we go borrowing some code.
+
+But in case you have the t,
+
+then I expect more data from you.
+
+It's not like I'll magically update it.
+
+You'll send me what data to update.
+
+You'll definitely give me data in the URL that
+
+this is the t I'm looking forward to update.
+
+But you also need to send me that
+
+you want to say update its name.
+
+You want to update its price.
+
+What you really want to do.
+
+So in this case what we're going to do is we'll say
+
+const and let's say I will grab name and I'll grab price
+
+and we're going to go ahead and get it from request buy.
+
+And once I have this, I'll say t dot name
+
+is now the new name that you are giving me.
+
+T dot price is the new price that you're giving me.
+
+So that's nice.
+
+And then we can say res dot send and we can send
+
+response of 200 and dot send and we can send this t.
+
+So there we go.
+
+Hopefully this is good enough and if there
+
+is not, we can surely update logic.
+
+This is what we call as business logic.
+
+So in case you heard about this term
+
+that hey, we write a business logic.
+
+That's exactly the business logic.
+
+This time the business logic is all about how
+
+we're updating the tea and all of that.
+
+Now we can go ahead and delete that as well.
+
+Just one final thing so we can
+
+go ahead and say delete taidhead.
+
+For that we are going to use app Dot delete.
+
+That's the route request in case you are wondering.
+
+Yep, these are all here.
+
+So we have get, post, put, patch, delete.
+
+All of them are available here.
+
+We'll be using delete.
+
+You'll be giving me same data.
+
+So you'll be sending me in the quotes of
+
+course slash t, and of course I don't know
+
+magically what one, which one to delete.
+
+So send me the data and then I can
+
+say repeatable information request response just like that.
+
+And for deleting the logic is little different because
+
+I cannot use the direct find because in case,
+
+you know the find that works, a different one
+
+returns the value of the first element in the
+
+array which predicates the true, otherwise undefined.
+
+You should definitely try out that how the find works.
+
+But what we want in this case is
+
+remove an element from a particular index.
+
+So what makes sense in this one is let's
+
+just say if we are looking from the t
+
+data, I want to find the index of it.
+
+And how can I do that?
+
+Go to each t and through that do a comparison that
+
+the tea dot id is it equals to again parse parseInt.
+
+We know that request dot params dot id.
+
+If you find that, give me that index back.
+
+So I'll just go ahead and say index. There we go.
+
+I receive an index.
+
+Now once I have this index, I need
+
+to verify whether the index is minus one.
+
+If it is minus one.
+
+Hey, nobody returned me that.
+
+Let's go ahead and check if the
+
+index is equal to minus one.
+
+That means, nope, I don't want to work.
+
+Return res dot send.
+
+Let's first update the status.
+
+That's a good one.
+
+And we'll say 404 couldn't find it.
+
+And then we go ahead and say send.
+
+And there we go in the send.
+
+I'll just say t not found. Okay.
+
+If the index is not minus one, that means I
+
+was able to find it then based on the index.
+
+There are so many ways how we can do it.
+
+I'll just use a splice.
+
+Feel free to use whatever you like.
+
+I'll just go ahead and say index.
+
+And I'll give splice, delete the count.
+
+I'll just say one only from that index.
+
+Just delete the one so that only
+
+one index is gone and that's it. I'm done.
+
+And after that I can just go ahead and use it.
+
+So I can just copy this, copy this.
+
+And once all of this is done, I
+
+can just go ahead and say return.
+
+Rest status.
+
+Status will be what should be.
+
+204 would be good.
+
+And again, by the way, it's not really
+
+a standard way of writing these status code.
+
+There is a proper definition, proper
+
+architecture of what should be returned.
+
+So we can just go ahead and say send, or
+
+we can just respond with something like this, deleted.
+
+We can send the id or the t itself.
+
+But anyways, so this is all what we have
+
+done is we have built an entire application.
+
+In fact, we have built an entire crud application.
+
+And this is pretty good.
+
+Within no time, we were able to design understood
+
+the express and design a full fledged crud application.
+
+Now all that's remaining is to test this application.
+
+So let's go ahead and do the testing a little bit
+
+of the professional way of how we're going to do this.
+
+I'll just copy this and remove it.
+
+And don't say so.
+
+The way how I would like to do this is I
+
+will just like to start from a blank collection in itself.
+
+And with the blank collection, it's taking a
+
+little time because probably I'm connected online.
+
+Looks like my Internet is not that great today.
+
+So I'll just call this one as t collection.
+
+I'll call this one as tapp.
+
+Now, inside each of the teaapp I
+
+would like to add a request.
+
+And it's up to you how you want to add the request.
+
+These are my just crud app.
+
+So I'll just call this one as Crud.
+
+So inside this we have the crud request.
+
+And in fact, crud would not be a nice name.
+
+I'll just first say add a t.
+
+That would be better of a name.
+
+I can just go ahead and paste the URL. That's nice.
+
+But what additionally I can do is I can select
+
+this entire URL and set it as a variable so
+
+that whenever I need it, it's helpful for me.
+
+That's usually a good practice.
+
+And I'll just call this one as set a new variable
+
+and I'm going to call this one as my t.
+
+Feel free to call it anything.
+
+Then you have to select the scope of it.
+
+That where this should be available, I can say for
+
+my active environment, for my collection, for my vault, which
+
+is a new feature, global, I'll just say in my
+
+collection only this is where I'm expect.
+
+I'm expecting that this variable should be available,
+
+set this variable and now you don't have
+
+to write one, two, 7.0 colon.
+
+You can just use the variable, my team.
+
+So I'll just go ahead and say slash tease.
+
+And in this one, obviously let's look at the docs.
+
+The doc says that hey, you should be
+
+making a request post on the teas.
+
+So let's change this as post and I can say teas.
+
+Now, as expected in the body itself, you are
+
+supposed to send raw data in the JSON format
+
+and you are expected to send name and price.
+
+So I'll just go ahead and say name and
+
+the name is going to be ginger tea.
+
+And this time since it's good that we have
+
+the pricing and all of that like this.
+
+So I'll just go ahead and say price
+
+and the price is going to be 100. That's it.
+
+Let's go ahead and send this data.
+
+And there we go.
+
+Now let's just add masala tea and send that.
+
+And of course I Steve, which is little bit expensive,
+
+I'll just go ahead and turn it to 500. Send this.
+
+So we have three data in the
+
+and we are testing it properly.
+
+And now I can also run a simple get request on the
+
+t's to get what all the data is available to me.
+
+So the best way of doing this is first
+
+save this so that you have everything being saved.
+
+Now I can just go ahead and save as
+
+so I can make a copy of this.
+
+I can do a save as as well, but
+
+I'll just go ahead and copy all of this.
+
+Or I can just go ahead and start a new one here.
+
+And this time it's a get request.
+
+But I can use my variable.
+
+So this is my t.
+
+What was the name of the variable?
+
+My tea sorry.
+
+So this one I have to go with my t. There we go.
+
+I'll use this one and I'll first save this.
+
+I have to make sure that I save it in
+
+the T app so that my variable is available.
+
+And I'll say this, save this.
+
+So this my t variable is now available to me
+
+and I can send a request to slash tea these. There we go.
+
+It's a get request. Pretty nice and easy.
+
+Save this and what do I want first change this
+
+and I'll call this one as list all teas.
+
+Now I can simply go ahead and send the request.
+
+No need to use anything else.
+
+I can send this and this gives me data
+
+of all the things that I get back id
+
+one ginger tea and probably what, whatever we have.
+
+This is how you properly run the test
+
+in the backend, not with the browsers.
+
+You need an environment like this.
+
+So let's go ahead and test out other things as well.
+
+Let's try to get a t with the id.
+
+So I'll create another request.
+
+Yes, this is a really common pattern.
+
+You'll see this a lot.
+
+So this time I'll use a save as and I would love to
+
+have another one, which is going to be list tea with Id.
+
+Let's hit enter.
+
+And this time I can just say
+
+teas and then I have to slash.
+
+Let's just say I want to get an id of
+
+two and I'll just go ahead and send this.
+
+And this gives me only the t with the id itself.
+
+Good test.
+
+So so far we have tested three endpoints.
+
+The fourth one, now we want to update it.
+
+We have to send a put request with the data itself.
+
+Let's go ahead and do the save as again, save
+
+as and we'll say that update, update t with id.
+
+We'll save this one.
+
+And what we're going to do next is you need to
+
+provide me the id so that I'll grab from the URL.
+
+So let's see the code.
+
+Yep, I'm grabbing that from the URL.
+
+I also expect that you provide me the
+
+new name and the price of it.
+
+So I can just go back onto my list a t or add a t.
+
+Yeah, that would be good.
+
+So I can just go ahead and copy this.
+
+So this is helpful.
+
+I can update the t in the updation.
+
+I'm providing everything in this.
+
+I have to change this to put request. Save this.
+
+This is a put request go in the body raw JSON
+
+data and I can just go ahead and work with that.
+
+So this is nice.
+
+Now I will update the second one.
+
+So second is masala tea.
+
+So now masala is going to be special masala tea.
+
+And of course it's rs500. Why 500?
+
+Let's make it rs600.
+
+I can just go ahead and send this.
+
+And this says okay to me
+
+because it shouldn't be saying okay.
+
+We were sending the tea back.
+
+Let's see what happened.
+
+Let's go ahead and try this.
+
+This is the best way of testing out your
+
+application that you can just go ahead and run
+
+this and we can see what happened.
+
+Oh, it got updated, the special masala Tea.
+
+We actually never stored the variable t.
+
+It's a whole object, that's why it said it like that.
+
+So the better way of doing
+
+would be change this variable.
+
+But I'll not do it right now.
+
+We have only in memory database and if I
+
+do any changes up here, this will be gone.
+
+So we are overwriting this.
+
+That's why this, but it's a good one.
+
+Good test that we found a bug
+
+and we can fix it later on.
+
+Okay, is good enough.
+
+And lastly, let's check if we
+
+can delete this second number items.
+
+So for the delete we'll use the
+
+same let's go ahead and save as.
+
+And this one is going to say delete id
+
+with the t and we'll just say save this.
+
+And this time it's going to be a delete request.
+
+You have to provide me t's slash two. So there we go.
+
+Teas slash whatever the id is.
+
+And I can go ahead and send a delete request,
+
+send this delete request and hopefully this should be gone.
+
+So if I go ahead and list it all. So there we go.
+
+We have ids being updated, special masala T.
+
+We should be giving it delete request and
+
+looks like there's some issue in that.
+
+Oh, we got some errors, probably status send.
+
+Oh, express deprecated.
+
+Oh, we got some methods, which is not working.
+
+Let me go ahead and quickly check this one.
+
+What's the issue?
+
+Ooh, this one took a little bit of
+
+a brain, a brain surgery to actually figure
+
+out what were the, what was the bug.
+
+And turns out there was no bug in the code.
+
+And that's where it really, really hurts.
+
+So I tried with a lot of different ways.
+
+As you can see, I've tried the console log and
+
+I will not hide these parts throughout the series.
+
+You really need to know how the debugging process works,
+
+where I face the issues and all of that.
+
+Now, surprisingly, the issue was inside the
+
+postman, that somehow when I created this
+
+delete, it didn't worked out.
+
+So I tried to send again and again from here itself.
+
+It didn't worked out.
+
+I tried restarting, I tried to add
+
+different ports and different console log messages.
+
+It was working here.
+
+The post was able to, I was able to
+
+see the post message in the console log.
+
+So that's really nice. A good check that.
+
+Hey, I'm able to reach out these posts.
+
+But when I tried, was trying to reach out this delete
+
+node somehow rest of the, all the nodes was working and
+
+even I was not able to a console log of the
+
+delete, making sure that I'm actually hitting the route itself.
+
+Then I tried to delete this last
+
+one, which I created the delete.
+
+And I recreated it and it worked.
+
+It worked like nothing.
+
+So if I go ahead and check this now.
+
+Notice here if I go ahead and list all the
+
+teas, I send this, I notice that this is empty.
+
+I can add the tea.
+
+Let's add a nice tea.
+
+I send this one, I get the list of all the teas.
+
+And it's so much easier to do the
+
+testing if you maintain these kinds of collection.
+
+Let's go ahead and grab.
+
+Let's try two.
+
+And that's nice that it's not available.
+
+Let's try to get it with the one.
+
+Yes, teas one that should be available.
+
+Let's grab all the teas. Its id is three.
+
+So I didn't restart it.
+
+So let's try to grab the one with the id of three.
+
+Not the two, the three and send it.
+
+Yes, we are able to get this update was working fine.
+
+And delete.
+
+We need to delete it with the id of three.
+
+We try that, send it and we get the message of deleted.
+
+And if I check this again now it's empty.
+
+So yes, these kinds of stuff do happen.
+
+And there's so much more that we
+
+can do with the postman as well.
+
+So I think we have spent enough of time.
+
+In the next video, we'll explore more about the postman
+
+as well as putting things into production as well.
+
+We'll do all of that.
+
+So in the meantime, go ahead and explore.
+
+We have built an entire
+
+crud application in the express.
+
+I think that's pretty good. Pretty nice.
+
+We even tested out this
+
+entire application with the postman.
+
+But there's so much more that I want to
+
+discuss about writing professional code, maintaining the collection in
+
+the postman, and even writing little bit of the
+
+documentation with the help of AI.
+
+So we'll check all of this out in the next video.
+
+Let's go ahead and catch it up there.
+
+
